@@ -10,20 +10,27 @@
 }
 
 - (NSString *)stringByRollCallingDwarfsInArray:(NSArray *)dwarfs {
-    NSString *dwarfString = @"";
-    for (NSUInteger i = 0; i < [dwarfs count]; i++) {
-        NSUInteger dwarfNumber = i + 1;
-        NSString *dwarfName = dwarfs[i];
-        NSString *formattedDwarf = [NSString stringWithFormat:@"%lu. %@", dwarfNumber, dwarfName];
-        NSString *divider = [NSString stringWithFormat:@" | "];
-        dwarfString = [dwarfString stringByAppendingString:formattedDwarf];
-        if (dwarfs[i] == [dwarfs lastObject]) {
+    
+    NSUInteger index = 0;
+    NSString *formattedString = @"";
+    
+    for (NSString *dwarf in dwarfs) {
+        
+        index += 1;
+        
+        NSString *divider = @" | ";
+        
+        formattedString = [formattedString stringByAppendingFormat:@"%lu. %@", index, dwarf];
+        
+        if (dwarf == [dwarfs lastObject]) {
             break;
         } else {
-            dwarfString = [dwarfString stringByAppendingString:divider];
+            formattedString = [formattedString stringByAppendingString:divider];
         }
+        
     }
-    return dwarfString;
+    
+    return formattedString;
 }
 
 - (NSArray *)arrayOfPlaneteerShoutsFromArray:(NSArray *)powers {
